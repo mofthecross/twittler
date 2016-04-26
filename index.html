@@ -3,20 +3,45 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <script>
+    <div id="container"> 
+      <div id="header">
+        <h1>Twittler</h1> 
+      </div>
+      <div id="content">
+        <div id="nav">
+            <h3>Navigation</h3>
+              <ul>
+              </ul>
+        </div>
+        <div id="main">
+          <h3>Tweets</h3>
+          <div id="timeline">
 
+          </div>
+
+        </div>
+      </div>
+      <div id="footer">
+      </div>
+    </div>
+
+
+    <script>
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        // var $body = $('body');
+        // $body.html('');
+        var $timeline = $('#timeline')
+        $timeline.html('')
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $tweet.appendTo($timeline);
           index -= 1;
         }
 
