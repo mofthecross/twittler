@@ -16,17 +16,25 @@
     <script>
       $(document).ready(function(){
         var $tweetfeed = $('#tweetfeed'); 
+        var index = 0;
+        var count = 0;
+
         var appendTweet = function(source, elem, index) {
-          while (index < source.length) {
             var tweet = source[index];
             var $tweet = $('<div></div>');
             $tweet.html('<a href= "#" class="tweetuser">@' + tweet.user + ':</a> <p class="tweettext">' + tweet.message +'</p><p class="timestamp">' + tweet.created_at +'</p>');
-            $tweet.appendTo(elem);
-            index++;
-          }
+            elem.prepend($tweet);
+            count++;
+        };
+        while(index < streams.home.length) {
+          appendTweet(streams.home, $tweetfeed, index);
+          index++;
         }
-        appendTweet(streams.home, $tweetfeed, 0);
+        setInterval(function() { appendTweet(streams.home, $tweetfeed, count) },  5000);
+
       });
+
+      
 
     </script>
   </body>
