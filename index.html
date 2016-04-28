@@ -6,11 +6,19 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div id="header"</div>
-        <h1>Twittler</h1>
+    <div id="header">
+      <h1>Twittler</h1>
+      <div id="filters">
+          <button class="home">home</button>
+      </div>
+      
 
-    <div id="tweetfeed"> 
+
     </div>
+    <div id="tweetfeed">
+    </div>
+
+
 
     <footer></footer>
     <script>
@@ -19,23 +27,33 @@
         var index = 0;
         var count = 0;
 
+        // append tweet to a dom element
         var appendTweet = function(source, elem, index) {
             var tweet = source[index];
-            var $tweet = $('<div></div>');
-            $tweet.html('<a href= "#" class="tweetuser">@' + tweet.user + ':</a> <p class="tweettext">' + tweet.message +'</p><p class="timestamp">' + tweet.created_at +'</p>');
+            var $tweet = $('<div class='+ tweet.user +'></div>');
+            $tweet.html('<a href="#" class="tweetuser">@' + tweet.user + ':</a> <p class="tweettext">' + tweet.message +'</p><p class="timestamp">' + tweet.created_at +'</p>');
             elem.prepend($tweet);
             count++;
         };
+        // append the first 11 tweets to tweetfeed.
         while(index < streams.home.length) {
           appendTweet(streams.home, $tweetfeed, index);
           index++;
         }
-        setInterval(function() { appendTweet(streams.home, $tweetfeed, count) },  5000);
+        // adds a tweet every 10 seconds
+        setInterval(function() { appendTweet(streams.home, $tweetfeed, count) },  10000);
 
+        // when a username is clicked, tweets of all other userames are hidden.
+         $(".tweetuser").on("click", function(){
+            var user = $(this).text().slice(1,-1);
+            $("#tweetfeed > :not(\"."+user+"\")").addClass("dontShow")
+         });
+
+         // when home is clicked, all tweets are shown. 
+         $(".home").on("click",function(){
+            $("#tweetfeed > div").removeClass("dontShow")
+         });
       });
-
-      
-
     </script>
   </body>
 </html>
