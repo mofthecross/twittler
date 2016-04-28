@@ -1,28 +1,64 @@
 
-header {
-	background: url(imgs/bg-header.png);
-	height: 60px;
-	width: 100%;
+div.header {
+	background-color: #fff;
+	background:url(https://abs.twimg.com/a/1461824155/img/t1/lohp_streams_header_bg_v4.png) no-repeat;
+	border-bottom: 1px black grey;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom: 10px;
+	position:relative;
+	/*width: 900px;*/
+	padding: 10px black;
+	height:  70px;
 }
 
+/*div.logo { 
+	position: absolute;
+	right: 10px;
+	top: 50px;
+	max-width:10%;
+	max-height:5%;
+	float: right;
+}
+*/
+
+div.children{
+
+}
+
+div.filters{
+	position: absolute;
+	left: 30%;
+	bottom: 10%;
+	font-size: 30px;
+}
+div.title{
+	position: absolute;
+	left: 45%;
+	bottom: 0%;
+}
+button.home{
+  padding:5px;
+  background-color: #dcdcdc;
+  border: 1px solid #666;
+  color:#000;
+  text-decoration:none;
+}
 
 h1 {
-/*	background-color: #66CCFF;*/
-	color: black;
+/*	position: relative;*/
+	top: 5px:
+	font-color: white;
 	text-align: center;
-	text-shadow: 3px 3px white;
+	text-shadow: 1px 1px white;
 }
-
-h2 {
-	color: black;
-}
-
 
 body {
-    background: white url();
+    background: #f5f8fa;
     margin: 0;
     padding: 0;
 }
+
 
 /*#container{
 	background-color: red;
@@ -33,9 +69,12 @@ body {
 }*/
 
 #tweetfeed {
-	padding: 10px;
+	position: absolute;
+	top: 115%;
+	left: 30%;
+	right: 30%;
 	background-color: white;
-	width: 800px;
+	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -44,15 +83,38 @@ body {
 	display: none;
 }
 
-div{
-
-
-
+div.children, .showtweets{
+	padding-top: 20px;
+	border: thin;
+	border-spacing: 1/2px;
+	border-color: black;
+	position: relative;
+	left: 20%;
 }
 
+p,.showtweets,.tweetuser,{
+	white-space: nowrap;
+	font-size: medium;
+	margin: 2px;
+	margin-left: 40px;
+	align-content: center;
+}
 
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
 
+.clearfix {display: inline-block;}
 
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+/* @end */
 
 
 

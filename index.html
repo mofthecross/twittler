@@ -6,53 +6,70 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div id="header">
-      <h1>Twittler</h1>
-      <div id="filters">
-          <button class="home">home</button>
+    <div class="header">
+      <div class="title">
+        <h1>Twittler</h1>
+        </div>
+      <div class="logo">
       </div>
-      
-
-
-    </div>
+      <div class="filters">
+          <button class="home">Home</button>
+      </div>
+    
     <div id="tweetfeed">
+      <div class="tweetLimbo children">
+        <a href ="#" class="showtweets dontShow">show new tweets</a>
+      </div>
     </div>
-
-
-
+    </div>
     <footer></footer>
     <script>
       $(document).ready(function(){
-        var $tweetfeed = $('#tweetfeed'); 
+        var $tweetfeed = $('#tweetfeed');
+        var $tweetLimbo= $('.tweetLimbo');
         var index = 0;
-        var count = 0;
-
         // append tweet to a dom element
-        var appendTweet = function(source, elem, index) {
-            var tweet = source[index];
+        var appendTweet = function(source, elem, i, visibility) {
+            var tweet = source[i];
             var $tweet = $('<div class='+ tweet.user +'></div>');
             $tweet.html('<a href="#" class="tweetuser">@' + tweet.user + ':</a> <p class="tweettext">' + tweet.message +'</p><p class="timestamp">' + tweet.created_at +'</p>');
-            elem.prepend($tweet);
-            count++;
+            if (!visibility) {
+              $tweet.addClass("dontShow"); 
+              $(".showtweets").removeClass("dontShow");
+            }
+            $tweet.addClass("children")
+            elem.after($tweet);
+            index++;
         };
-        // append the first 11 tweets to tweetfeed.
-        while(index < streams.home.length) {
-          appendTweet(streams.home, $tweetfeed, index);
-          index++;
+        // appends the first 11 tweets to tweetfeed.
+        var count = 0;
+        while(count < streams.home.length) {
+          appendTweet(streams.home, $tweetLimbo, count, true);
+          count++
         }
+
         // adds a tweet every 10 seconds
-        setInterval(function() { appendTweet(streams.home, $tweetfeed, count) },  10000);
+        setInterval(function() {
+          appendTweet(streams.home, $tweetLimbo, index, false);
+        },  10000);
 
-        // when a username is clicked, tweets of all other userames are hidden.
-         $(".tweetuser").on("click", function(){
-            var user = $(this).text().slice(1,-1);
-            $("#tweetfeed > :not(\"."+user+"\")").addClass("dontShow")
-         });
+       $(".tweetuser").on("click", function() {
+          var user = $(this).text().slice(1,-1);
+          $("#tweetfeed > :not(\"."+user+"\")").addClass("dontShow");
+          $(".tweetLimbo").addClass("dontShow");
+       });
 
-         // when home is clicked, all tweets are shown. 
-         $(".home").on("click",function(){
-            $("#tweetfeed > div").removeClass("dontShow")
-         });
+         // removes .dontShow class from any target elements;
+        $(".home").on("click",function() {
+          $("#tweetfeed > div").removeClass("dontShow");
+          $(".showtweets").addClass("dontShow");
+        });
+
+        $(".showtweets").on("click", function(){
+           $("#tweetfeed > div").removeClass("dontShow");
+           $(this).addClass("dontShow");
+        });
+
       });
     </script>
   </body>
