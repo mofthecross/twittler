@@ -1,38 +1,40 @@
 
 div.header{
-	position: relative;
-	height: 50px;
+	position: fixed;
+    height: 55px;
+    width: 100%;
+    background: url(https://abs.twimg.com/a/1461824155/img/t1/lohp_streams_header_bg_v4.png) no-repeat;
 }
 
 div.navigation{
 	position: absolute;
-	top: 30px;
-	left: 5px;
+	top: 40%;
+	left: 27%;
+	width: 80px;
+	height: 10px;
 }
 
-div.title{
+div#title{
 	position: absolute;
-	top: 30%;
-	padding-top: 10px;
-	font-color: white;
 	text-align: center;
 	text-shadow: 1px 1px white;
-	font-size: 25px;
+	width: 15px;
+	left: 45%;
 }
 
 button.home{
-  padding:7px;
-  background-color: white;
-  border: 1px solid #666;
-  color: black;
+  	padding:5px;
+  	background-color: white;
+  	border: 1px solid #666;
+ 	color: black;
 }
 
 h1{
-	padding-top: 10px;
-	font-color: white;
 	text-align: center;
 	text-shadow: 1px 1px white;
 	font-size: 25px;
+	width: 100px;
+	height: 15px;
 }
 
 body {
@@ -42,40 +44,64 @@ body {
 }
 
 #container{
-/*	position: relative;*/
 	background:url(https://abs.twimg.com/a/1461824155/img/t1/lohp_streams_header_bg_v4.png) no-repeat;
-	width: 800px;
 	margin-left: auto;
 	margin-right: auto;
+	width: 870px;
 }
 
-div.rightpanel{
-	float:right;
+
+#Sidebar{
+	float:left;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 8%;
+}
+
+div.userinfo{
+	-moz-border-radius:12px;
+	-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius:12px;
+	border:2px solid #f5f5f5;
+
+	padding:5px;
+/*	padding-left: 40px;*/
+	background-color: white;
+	width:300px;
+
+	font-size:14px;
+	font-family:Georgia,sans-serif;
+	color:#333333;
+
 }
 
 #tweetfeed {
-	background-color: white;
-	width: 500px;
 	margin-left: auto;
 	margin-right: auto;
+	float: right;
+	padding-top: 8%;
 }
 
 .dontShow{
 	display: none;
 }
 
-div.children, div.tweetLimbo{
-	float: right;
+div.tweetLimbo{
+	height:20px;
+	background-color: none;
+}
+
+div.children{
 	-moz-border-radius:12px;
 	-border-radius: 12px;
 	-webkit-border-radius: 12px;
 	border-radius:12px;
-
 	border:2px solid #f5f5f5;
 
 	padding:5px;
 	padding-right: 40px;
-
+	background-color: white;
 	width:450px;
 
 
@@ -84,7 +110,7 @@ div.children, div.tweetLimbo{
 	color:#333333;
 }
 
-.tweetLimbo{
+.tweetLimbo,.userinfo{
 	text-align: center;
 }
 

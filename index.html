@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div id="container">
+    
       <div class="header">
         <div id="title"> 
           <h1>Twittler</h1>
@@ -15,15 +15,14 @@
            <button class="home">Home</button>
         </div>
       </div>
-
-     <div id="Sidebar" class="leftpanel">
-     </div>
-    
-      <div id="tweetfeed" class="rightpanel">
-        <div class="userTimeline dontShow"> </div>
-        <div class="tweetLimbo children">
-        <a href ="#" class="showtweets dontShow">show new tweets</a>
+    <div id="container">
+      <div id="Sidebar" class="leftpanel">
+        <div class="userinfo"></div>   
       </div>
+      <div id="tweetfeed" class="rightpanel">
+        <div class="tweetLimbo children dontShow">
+          <a href ="#" class="showtweets">show new tweets</a>
+        </div>
       </div>
     </div>
     <footer></footer>
@@ -38,8 +37,8 @@
             var $tweet = $('<div class='+ tweet.user +'></div>');
             $tweet.html('<a href="#" class="tweetuser">@' + tweet.user + ':</a> <p class="tweettext">' + tweet.message +'</p><p class="timestamp">' + tweet.created_at +'</p>');
             if (!visibility) {
-              $tweet.addClass("dontShow"); 
-              $(".showtweets").removeClass("dontShow");
+              $tweet.addClass("dontShow");
+              $(".tweetLimbo").removeClass("dontShow") 
             }
             $tweet.addClass("children")
             elem.after($tweet);
@@ -60,20 +59,21 @@
        $(document).on("click",".tweetuser", function() {
           var user = $(this).text().slice(1,-1);
           $("#tweetfeed > :not(\"."+user+"\")").addClass("dontShow");
-          $(".userTimeline").html('<p>'+user+'\'s timeline</p>');
-          $(".showtweets").addClass("dontShow");
-          $(".userTimeline").removeClass("dontShow")
+          $(".userinfo").html('<p>'+user+'\'s timeline</p>');
+          $(".tweetLimbo").addClass("dontShow");
+          
        });
          //shows home page/all current tweets.
         $(".home").on("click",function() {
           $("#tweetfeed > div").removeClass("dontShow");
           $(".showtweets").addClass("dontShow");
-          $(".userTimeline").addClass("dontShow")
+          $(".userinfo").html('')
+
         });
         //shows new tweets
-        $(".showtweets").on("click", function(){
+        $(document).on("click", ".showtweets",function(){
            $("#tweetfeed > :not('.userTimeline')").removeClass("dontShow");
-           $(this).addClass("dontShow");
+           $(".tweetLimbo").addClass("dontShow");
         });
 
       });
